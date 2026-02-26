@@ -586,6 +586,11 @@ test_that("percents are escaped in link targets", {
 })
 
 test_that("resolve_link_package", {
+  # Doesn't work with
+  skip_if_not(
+    is.null(.getNamespace("roxygen2")[[".__DEVTOOLS__"]]),
+    "roxygen2 loaded with devtools"
+  )
   rm(list = ls(envir = mddata), envir = mddata)
   expect_snapshot({
     resolve_link_package("roxygenize", "roxygen2", test_path("testMdLinks2"))
