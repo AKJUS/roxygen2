@@ -31,8 +31,18 @@ tag_value <- function(x) {
 
 # Also recorded in tags.yml
 inherit_components <- c(
-  "params", "return", "title", "description", "details", "seealso",
-  "sections", "references", "examples", "author", "source", "note",
+  "params",
+  "return",
+  "title",
+  "description",
+  "details",
+  "seealso",
+  "sections",
+  "references",
+  "examples",
+  "author",
+  "source",
+  "note",
   "format"
 )
 
@@ -55,7 +65,10 @@ tag_inherit <- function(x) {
     } else {
       unknown <- setdiff(fields, all)
       if (length(unknown) > 0) {
-        warn_roxy_tag(x, "attempts to inherit from unknown type {.str {unknown}}")
+        warn_roxy_tag(
+          x,
+          "attempts to inherit from unknown type {.str {unknown}}"
+        )
         fields <- intersect(fields, all)
       }
     }
@@ -115,12 +128,12 @@ tag_two_part <- function(x, first, second, required = TRUE, markdown = TRUE) {
     pieces[is.na(pieces)] <- ""
 
     if (markdown) {
-      pieces[,2] <- markdown_if_active(pieces[,2], x)
+      pieces[, 2] <- markdown_if_active(pieces[, 2], x)
     }
 
     x$val <- list(
       pieces[, 1],
-      trim_docstring(pieces[,2])
+      trim_docstring(pieces[, 2])
     )
     names(x$val) <- c("name", "description")
     x
@@ -163,10 +176,13 @@ tag_words_line <- function(x) {
   n_lines <- str_count(x$val, "\n")
   if (n_lines >= 1) {
     first_line <- str_split(x$val, "\n")[[1]][[1]]
-    warn_roxy_tag(x, c(
-      "must be a single line, not {n_lines + 1}",
-      i = "The first line is {.str {first_line}}"
-    ))
+    warn_roxy_tag(
+      x,
+      c(
+        "must be a single line, not {n_lines + 1}",
+        i = "The first line is {.str {first_line}}"
+      )
+    )
     NULL
   } else if (!rdComplete(x$raw, is_code = FALSE)) {
     warn_roxy_tag(x, "has mismatched braces or quotes")
@@ -197,13 +213,16 @@ tag_code <- function(x) {
     warn_roxy_tag(x, "requires a value")
     NULL
   } else {
-    tryCatch({
-      x$val <- parse(text = x$raw)
-      x
-    }, error = function(e) {
-      warn_roxy_tag(x, "failed to parse", parent = e)
-      NULL
-    })
+    tryCatch(
+      {
+        x$val <- parse(text = x$raw)
+        x
+      },
+      error = function(e) {
+        warn_roxy_tag(x, "failed to parse", parent = e)
+        NULL
+      }
+    )
   }
 }
 

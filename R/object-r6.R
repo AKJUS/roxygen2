@@ -19,7 +19,7 @@ extract_r6_data <- function(x) {
 }
 
 drop_clone_maybe <- function(x, data) {
-  if (! "clone" %in% names(x$public_methods)) {
+  if (!"clone" %in% names(x$public_methods)) {
     cline <- which(data$members$name == "clone" & data$members$type == "method")
     if (length(cline)) data$members <- data$members[-cline, ]
   }
@@ -73,7 +73,11 @@ extract_r6_methods <- function(x) {
   methods <- data.frame(
     stringsAsFactors = FALSE,
     type = if (length(method_loc)) "method" else character(),
-    class = if (length(method_loc)) x$classname %||% NA_character_ else character(),
+    class = if (length(method_loc)) {
+      x$classname %||% NA_character_
+    } else {
+      character()
+    },
     name = unname(method_nms),
     file = unname(method_fnm),
     line = unname(method_loc),
@@ -92,8 +96,12 @@ add_default_method_data <- function(obj, methods) {
   )
 
   for (mname in names(defaults)) {
-    if (mname %in% methods$name) next
-    if (! mname %in% names(obj$public_methods)) next
+    if (mname %in% methods$name) {
+      next
+    }
+    if (!mname %in% names(obj$public_methods)) {
+      next
+    }
     rec <- data.frame(
       stringsAsFactors = FALSE,
       type = defaults[[mname]]$type %||% "method",
@@ -136,7 +144,9 @@ extract_r6_bindings <- function(x) {
 }
 
 extract_r6_super_data <- function(x) {
-  if (is.null(x$inherit)) return()
+  if (is.null(x$inherit)) {
+    return()
+  }
   super <- x$get_inherit()
   super_data <- extract_r6_super_data(super)
 
@@ -160,12 +170,12 @@ extract_r6_super_data <- function(x) {
     c(length(method_nms), length(field_nms), length(active_nms))
   )
   rsort <- function(x) sort_c(x, decreasing = TRUE)
-  names <-c(rsort(method_nms), rsort(field_nms), rsort(active_nms))
+  names <- c(rsort(method_nms), rsort(field_nms), rsort(active_nms))
   mth <- rbind(
     data.frame(
       stringsAsFactors = FALSE,
       package = rep(pkg, length(names)),
-      classname = rep(classname , length(names)),
+      classname = rep(classname, length(names)),
       type = types,
       name = names
     ),

@@ -39,7 +39,9 @@ build_rd <- function(..., collapse = NULL, sep = "") {
   env <- parent.frame()
 
   escaped <- lapply(args, function(arg) {
-    if (is.character(arg)) return(arg)
+    if (is.character(arg)) {
+      return(arg)
+    }
 
     escape(eval(arg, env))
   })
@@ -91,12 +93,20 @@ make_as_character_rd <- function() {
   fn <- internal_f("tools", "as.character.Rd")
 
   body <- body(fn)
-  idx <- purrr::detect_index(body, ~ is_call(.x, "<-", 2) && is_symbol(.x[[2]], "TWOARG"))
+  idx <- purrr::detect_index(
+    body,
+    ~ is_call(.x, "<-", 2) && is_symbol(.x[[2]], "TWOARG")
+  )
   if (idx == 0) {
     return(fn)
   }
 
-  body[[idx]][[3]] <- call_modify(body[[idx]][[3]], "\\href", "\\ifelse", "\\if")
+  body[[idx]][[3]] <- call_modify(
+    body[[idx]][[3]],
+    "\\href",
+    "\\ifelse",
+    "\\if"
+  )
   body(fn) <- body
   fn
 }

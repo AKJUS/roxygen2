@@ -22,7 +22,6 @@ merge.rd_section_reexport <- function(x, y, ...) {
 }
 #' @export
 format.rd_section_reexport <- function(x, ...) {
-
   info <- data.frame(
     pkg = x$value$pkg,
     fun = x$value$fun,
@@ -34,10 +33,14 @@ format.rd_section_reexport <- function(x, ...) {
   pkg_links <- map(pkgs, function(pkg) {
     pkg <- pkg[order(pkg$fun), ]
     links <- paste0(
-      "\\code{\\link[", pkg$pkg,
+      "\\code{\\link[",
+      pkg$pkg,
       ifelse(pkg$file == pkg$fun, "", paste0(":", pkg$file)),
-      "]{", escape(pkg$fun), "}}",
-      collapse = ", ")
+      "]{",
+      escape(pkg$fun),
+      "}}",
+      collapse = ", "
+    )
     paste0("\\item{", pkg$pkg[[1]], "}{", links, "}")
   })
 

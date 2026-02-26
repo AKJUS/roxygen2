@@ -25,7 +25,8 @@ format_classes <- function(x) {
     base_classes <- paste0(
       " (inherits from ",
       paste(classes[-1L], collapse = ", "),
-      ")")
+      ")"
+    )
   }
 
   paste0(classes[[1L]], base_classes)
