@@ -117,6 +117,6 @@ test_that("warning for both @md and @noMd", {
 
   # No translation even if markdown on generally
   local_markdown()
-  suppressWarnings(out2 <- roc_proc_text(rd_roclet(), block))
+  suppressMessages(out2 <- roc_proc_text(rd_roclet(), block))
   expect_equal(out2[[1]]$get_value("description"), "`code`")
 })

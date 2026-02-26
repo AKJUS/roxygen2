@@ -24,16 +24,18 @@ test_that("@describeIn generic destination captures s3 method source", {
 })
 
 test_that("@describeIn generic destination captures s4 method source", {
-  out <- roc_proc_text(
-    rd_roclet(),
-    "
-    #' Title
-    setGeneric('f', function(x) standardGeneric('f'))
+  suppressMessages(
+    out <- roc_proc_text(
+      rd_roclet(),
+      "
+      #' Title
+      setGeneric('f', function(x) standardGeneric('f'))
 
-    #' @describeIn f Method for a
-    setMethod(f, signature('a'), function(x) 1)
-  "
-  )[[1]]
+      #' @describeIn f Method for a
+      setMethod(f, signature('a'), function(x) 1)
+    "
+    )[[1]]
+  )
   out$get_value("minidesc")
 
   expect_equal(out$get_value("minidesc")$extends, "generic")

@@ -316,7 +316,7 @@ test_that("another markdown link bug is fixed", {
 })
 
 test_that("markdown code as link text is rendered as code", {
-  suppressWarnings(
+  suppressMessages(
     out1 <- roc_proc_text(
       rd_roclet(),
       "
@@ -472,7 +472,7 @@ test_that("links to S4 classes are OK", {
   )[[1]]
   expect_equivalent_rd(out1, out2)
 
-  suppressWarnings(
+  suppressMessages(
     out1 <- roc_proc_text(
       rd_roclet(),
       "
