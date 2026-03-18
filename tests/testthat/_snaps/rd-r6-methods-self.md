@@ -31,7 +31,7 @@
       \if{html}{\out{<hr>}}
       \if{html}{\out{<a id="method-Person-greet"></a>}}
       \if{latex}{\out{\hypertarget{method-Person-greet}{}}}
-      \subsection{Method \code{greet()}}{
+      \subsection{\code{Person$greet()}}{
       Say hello.
       \subsection{Usage}{
       \if{html}{\out{<div class="r">}}
@@ -56,9 +56,9 @@
       cat(format(method), sep = "\n")
     Output
       \if{html}{\out{<hr>}}
-      \if{html}{\out{<a id="method-Foo-new"></a>}}
-      \if{latex}{\out{\hypertarget{method-Foo-new}{}}}
-      \subsection{Method \code{new()}}{
+      \if{html}{\out{<a id="method-Foo-initialize"></a>}}
+      \if{latex}{\out{\hypertarget{method-Foo-initialize}{}}}
+      \subsection{\code{Foo$new()}}{
       Create object.
       \subsection{Usage}{
       \if{html}{\out{<div class="r">}}
@@ -76,7 +76,7 @@
       \if{html}{\out{<hr>}}
       \if{html}{\out{<a id="method-Job-run"></a>}}
       \if{latex}{\out{\hypertarget{method-Job-run}{}}}
-      \subsection{Method \code{run()}}{
+      \subsection{\code{Job$run()}}{
       Run the job.
       \subsection{Usage}{
       \if{html}{\out{<div class="r">}}
@@ -109,7 +109,7 @@
       \if{html}{\out{<hr>}}
       \if{html}{\out{<a id="method-Job-run"></a>}}
       \if{latex}{\out{\hypertarget{method-Job-run}{}}}
-      \subsection{Method \code{run()}}{
+      \subsection{\code{Job$run()}}{
       Run.
       \subsection{Usage}{
       \if{html}{\out{<div class="r">}}

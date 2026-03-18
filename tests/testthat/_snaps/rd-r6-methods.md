@@ -12,7 +12,7 @@
       \if{html}{\out{<hr>}}
       \if{html}{\out{<a id="method-Foo-run"></a>}}
       \if{latex}{\out{\hypertarget{method-Foo-run}{}}}
-      \subsection{Method \code{run()}}{
+      \subsection{\code{Foo$run()}}{
       Run it.
       \subsection{Usage}{
       \if{html}{\out{<div class="r">}}
@@ -30,13 +30,13 @@
     Output
       
       ## ------------------------------------------------
-      ## Method `C$greet`
+      ## Method `C$greet()`
       ## ------------------------------------------------
       
       c$greet()
       
       ## ------------------------------------------------
-      ## Method `C$stop`
+      ## Method `C$stop()`
       ## ------------------------------------------------
       
       c$stop()
