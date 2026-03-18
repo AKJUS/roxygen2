@@ -8,23 +8,14 @@
       \name{A}
       \alias{A}
       \title{Class A}
-      \value{
-      A value.
-      }
       \description{
-      A method 1.
-      
-      Method 2 description.
-      
-      Method 3.
+      Class A description.
       }
       \details{
-      Method 2 details.
+      Class A details
       }
       \examples{
       a <- A$new()
-      ## Example for meth1
-      ## Example for meth2
       
       ## ------------------------------------------------
       ## Method `A$meth1`
@@ -185,9 +176,10 @@
       \alias{B}
       \title{Class B}
       \description{
-      B method 1.
-      
-      B method 4.
+      Class B Description.
+      }
+      \details{
+      Class B details.
       }
       \section{Super class}{
       \code{A} -> \code{B}
@@ -291,9 +283,10 @@
       \alias{C}
       \title{Class C}
       \description{
-      C method 2.
-      
-      C method 5.
+      Class C Description.
+      }
+      \details{
+      Class C details.
       }
       \section{Super classes}{
       \code{A} -> \code{B} -> \code{C}
@@ -366,4 +359,3 @@
       
       }
       }
-

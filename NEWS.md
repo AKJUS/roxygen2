@@ -3,6 +3,7 @@
 * `@examplesIf` now warns when there is no example code after the condition (#1695).
 * `tag_words_line()` is deprecated in favour of `tag_words()`, which now checks for single-line content by default. Use `tag_words(x, multiline = TRUE)` or `tag_value(x, multiline = TRUE)` if your tag legitimately spans multiple lines.
 * R6 improvements:
+  * `@returns` now works as a method-level tag in R6 classes, just like `@return` (#1148).
   * The "Super classes" section now omits the `pkg::` prefix for parent classes from the same package, making the inheritance chain easier to read (#1567).
   * R6 classes with only active bindings and `cloneable = FALSE` no longer error during documentation (#1610).
   * `@example` (singular, with a file path) now works correctly in R6 class documentation (#1158).
