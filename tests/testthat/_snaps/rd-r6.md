@@ -22,6 +22,7 @@
       Method 2 details.
       }
       \examples{
+      a <- A$new()
       ## Example for meth1
       ## Example for meth2
       
