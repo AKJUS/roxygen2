@@ -10,6 +10,7 @@
   * `@field` with comma-separated names (e.g., `@field var_1,var_2 description`) no longer produces spurious warnings about undocumented active bindings or unknown fields (#1600).
   * R6 classes with only active bindings and `cloneable = FALSE` no longer error during documentation (#1610).
   * `@example` (singular, with a file path) now works correctly in R6 class documentation (#1158).
+  * You can now use `@noRd` before an R6 method to suppress its documentation, and `@field name NULL` to suppress documentation for a field or active binding (#1067).
   * Inherited method links now only link to parent classes that have documentation, avoiding broken links when parent classes are undocumented (#963, #1155).
   * `initialize()` method parameters now automatically inherit documentation from `@field` tags with the same name, reducing the need to duplicate descriptions. Explicit `@param` tags still take precedence (#1004).
 * New `needs_roxygenize()` provides a lightweight check that man pages are up-to-date by comparing modification times of `.Rd` files with their source files (#1411).
