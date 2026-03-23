@@ -207,8 +207,7 @@ r6_resolve_params <- function(method, block) {
   }
 
   # Order them according to formals
-  firstnames <- map_chr(par, \(t) tag_names(t)[[1]]
-  )
+  firstnames <- map_chr(par, \(t) tag_names(t)[[1]])
   par <- par[order(match(firstnames, fnames))]
 
   lapply(par, function(t) {
