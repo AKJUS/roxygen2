@@ -75,6 +75,31 @@ object_usage.s4method <- function(x) {
   function_usage(x$value@generic, formals(x$value), s4method)
 }
 
+#' @export
+object_usage.s7class <- object_usage.function
+
+#' @export
+object_usage.s7generic <- object_usage.function
+
+#' @export
+object_usage.s7method <- function(x) {
+  generic <- x$value$generic
+  classes <- x$value$classes
+
+  formatted <- map_chr(classes, \(nms) paste0("<", nms, ">", collapse = "/"))
+  if (length(formatted) == 1) {
+    comment <- paste0("## S7 method for class ", formatted)
+  } else {
+    comment <- paste0(
+      "## S7 method for classes ",
+      paste0(formatted, collapse = ", ")
+    )
+  }
+
+  usage <- function_usage(generic, formals(x$value$fn), identity)
+  rd(paste0(comment, "\n", usage))
+}
+
 # Function usage ----------------------------------------------------------
 
 # Usage:
