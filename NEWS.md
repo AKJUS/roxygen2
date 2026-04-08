@@ -1,4 +1,5 @@
 # roxygen2 (development version)
+* `vignette("rd-other")` now includes improved advice for documenting S3 generics, classes, and methods, including how to use the new [doclisting](https://doclisting.r-lib.org/) package to automatically list methods for a generic (#1513).
 * Added initial support for S7 classes, generics, and methods (#1484). 
   * S7 generics are documented like regular functions.
   * S7 classes are documented like regular functions, but you can use `@prop` to document additional properties that are not constructor parameters. If multiple classes share one page, use `@prop ClassName@prop_name description` to group properties by class. 
