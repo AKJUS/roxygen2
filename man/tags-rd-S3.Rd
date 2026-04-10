@@ -12,7 +12,7 @@ Learn the full details in \code{vignette('rd-S3')}.
 
 Key tags:
 \itemize{
-\item \verb{@method $\{1:generic\} $\{2:class\}}: Force a function to be recognised as an S3 method. This affects the default usage and the \code{NAMESPACE} directive produced by \verb{@export}. Only needed if automatic detection fails.
+\item \verb{@method $\{1:generic\} $\{2:class\}}: If ambiguous, clarify which generic an S3 method belongs too. Only needed in very rare cases.
 }
 }
 \seealso{

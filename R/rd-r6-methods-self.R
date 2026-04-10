@@ -143,11 +143,17 @@ r6_method_from_row <- function(method, block) {
   )
 }
 
+# Resolve params within a class: method @param -> class-level @param -> @field.
+# Cross-class inheritance from parent classes is handled later by
+# r6_resolve_method_params().
 r6_resolve_params <- function(method, block) {
   tags <- method$tags[[1]]
-  par <- keep(tags, \(t) t$tag == "param")
-  mnames <- unlist(lapply(par, tag_names))
-  dup <- unique(mnames[duplicated(mnames)])
+  par_tags <- keep(tags, \(t) t$tag == "param")
+
+  params <- r6_tags_to_params(par_tags)
+  pnames <- r6_param_names(params)
+
+  dup <- unique(pnames[duplicated(pnames)])
   for (m in dup) {
     warn_roxy_block(
       block,
@@ -163,59 +169,50 @@ r6_resolve_params <- function(method, block) {
     return(list())
   }
 
-  # Add missing from class-level @param
-  miss <- setdiff(fnames, mnames)
-  is_in_cls <- map_lgl(
-    block$tags,
-    function(t) {
-      !is.na(t$line) &&
-        t$line < block$line &&
-        tag_is(t, "param") &&
-        tag_has_name(t, miss)
-    }
-  )
-  par <- c(par, block$tags[is_in_cls])
+  # 1. Add class-level @param
+  miss <- setdiff(fnames, pnames)
+  cls_tags <- keep(block$tags, function(t) {
+    !is.na(t$line) &&
+      t$line < block$line &&
+      tag_is(t, "param") &&
+      tag_has_name(t, miss)
+  })
+  params <- c(params, r6_tags_to_params(cls_tags))
 
-  # For initialize(), inherit from @field tags for any still-missing params
+  # 2. For initialize() only, inherit from @field
   if (method$name == "initialize") {
-    mnames <- unlist(lapply(par, tag_names))
-    miss <- setdiff(fnames, mnames)
+    miss <- setdiff(fnames, r6_param_names(params))
 
     if (length(miss) > 0) {
       field_tags <- keep(block$tags, function(t) {
         tag_is(t, "field") && tag_has_name(t, miss)
       })
-      field_as_param <- lapply(field_tags, function(t) {
-        val <- list(name = t$val$name, description = t$val$description)
-        roxy_generated_tag(block, "param", val)
-      })
-      par <- c(par, field_as_param)
+      params <- c(params, r6_tags_to_params(field_tags))
     }
   }
 
-  # Check if anything is still missing
-  mnames <- unlist(lapply(par, tag_names))
-  miss <- setdiff(fnames, mnames)
-  for (m in miss) {
-    warn_roxy_block(
-      block,
-      c(
-        "Must use one @param for each argument",
-        x = "${method$name}({m}) is not documented"
-      )
-    )
-  }
-
   # Order them according to formals
-  firstnames <- map_chr(par, \(t) tag_names(t)[[1]])
-  par <- par[order(match(firstnames, fnames))]
+  firstnames <- map_chr(
+    strsplit(map_chr(params, \(x) x$name), ","),
+    \(x) trimws(x[[1]])
+  )
+  params[order(match(firstnames, fnames))]
+}
 
-  lapply(par, function(t) {
+r6_tags_to_params <- function(tags) {
+  lapply(tags, function(t) {
     list(
       name = gsub(",", ", ", t$val$name),
       description = t$val$description
     )
   })
+}
+
+r6_param_names <- function(params) {
+  if (length(params) == 0) {
+    return(character())
+  }
+  trimws(unlist(strsplit(map_chr(params, \(x) x$name), ",")))
 }
 
 r6_method_name <- function(class, method) {

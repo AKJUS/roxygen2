@@ -10,11 +10,6 @@ r6_extract_field_tags <- function(block, r6data, type = c("field", "active")) {
   tags <- keep(block$tags, \(t) tag_is(t, "field") && !tag_has_name(t, other))
   docd <- unlist(lapply(tags, tag_names))
 
-  miss <- setdiff(expected, docd)
-  if (length(miss) > 0) {
-    warn_roxy_block(block, "Undocumented R6 {label}{?s}: {miss}")
-  }
-
   dup <- unique(docd[duplicated(docd)])
   if (length(dup) > 0) {
     warn_roxy_block(block, "R6 {label}{?s} documented multiple times: {dup}")
@@ -37,14 +32,29 @@ r6_extract_field_tags <- function(block, r6data, type = c("field", "active")) {
     )
   })
 
-  rd_r6_fields(items, type = type)
+  rd_r6_fields(items, type = type, expected = expected)
+}
+
+r6_field_names <- function(rd_fields) {
+  if (length(rd_fields) == 0) {
+    return(character())
+  }
+  labels <- map_chr(rd_fields, \(x) x$name)
+  trimws(unlist(strsplit(labels, ",")))
 }
 
 # Rd ---------------------------------------------------------------------------
 
-rd_r6_fields <- function(fields = list(), type = c("field", "active")) {
+rd_r6_fields <- function(
+  fields = list(),
+  type = c("field", "active"),
+  expected = character()
+) {
   type <- match.arg(type)
-  structure(list(fields = fields, type = type), class = "rd_r6_fields")
+  structure(
+    list(fields = fields, type = type, expected = expected),
+    class = "rd_r6_fields"
+  )
 }
 
 rd_r6_field <- function(name, description) {

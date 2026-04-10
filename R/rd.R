@@ -33,11 +33,12 @@ roclet_process.roclet_rd <- function(x, blocks, env, base_path) {
 
   # Convert each block into a topic, indexed by filename
   topics <- RoxyTopics$new()
-
   for (block in blocks) {
     rd <- block_to_rd(block, base_path, env)
     topics$add(rd, block)
   }
+
+  topics_process_r6_inherit(topics)
   topics_process_family(topics, env)
   topics_process_inherit(topics, env)
   topics$drop_invalid()
