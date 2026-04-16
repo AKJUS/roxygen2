@@ -41,20 +41,31 @@
 
 ## R6
 
-* R6 method usage now shows `ClassName$new(args)` for constructors and `obj$method(args)` for other methods, making it clearer how each method is actually called (#1026).
+There are two new ways to document methods outside of the class definition:
+
 * Methods added via `$set()` can now be documented by placing a roxygen block directly above the `$set()` call (#931).
-* New `@R6method Class$method` tag allows you to document R6 methods anywhere, in case you are generating them in a way that roxygen2 doesn't currently recognize (#991).
-* `@returns` now works as a method-level tag in R6 classes, just like `@return` (#1148).
+* `@R6method Class$method` is a new tag that allows you to document R6 methods anywhere, in case you are generating them in a way that roxygen2 doesn't currently recognize (#991).
+
+Classes now inherit more from their parents: 
+
+* R6 subclass methods now automatically inherit parameter documentation from the same-named superclass method when parameters are not documented locally. Fields and active bindings also inherit documentation from superclasses (#996).
+
+And you can choose to suppress documentation for individual fields and methods:
+
+* `@noRd` before an R6 method now suppresses its documentation, and `@field name NULL` suppresses documentation for a field or active binding (#1067).
+
+There was also large number of bug fixes and minor improvements:
+
+* Inherited method links now only link to parent classes that have documentation, avoiding broken links when parent classes are undocumented (#963, #1155).
+* R6 classes with only active bindings and `cloneable = FALSE` no longer error during documentation (#1610).
+* R6 method examples displayed in method subsections now strip `\dontrun{}`, `\donttest{}`, and `\dontshow{}` wrappers, since these Rd macros are not interpreted inside `\preformatted{}` blocks (#1072).
 * The "Super classes" section now omits the `pkg::` prefix for parent classes from the same package, making the inheritance chain easier to read (#1567).
 * `@description` and `@details` for R6 methods now support markdown headings (#1647).
-* `@field` with comma-separated names (e.g., `@field var_1,var_2 description`) no longer produces spurious warnings about undocumented active bindings or unknown fields (#1600).
-* R6 classes with only active bindings and `cloneable = FALSE` no longer error during documentation (#1610).
 * `@example` (singular, with a file path) now works correctly in R6 class documentation (#1158).
-* R6 method examples displayed in method subsections now strip `\dontrun{}`, `\donttest{}`, and `\dontshow{}` wrappers, since these Rd macros are not interpreted inside `\preformatted{}` blocks (#1072).
-* You can now use `@noRd` before an R6 method to suppress its documentation, and `@field name NULL` to suppress documentation for a field or active binding (#1067).
-* Inherited method links now only link to parent classes that have documentation, avoiding broken links when parent classes are undocumented (#963, #1155).
+* `@field` with comma-separated names (e.g., `@field var_1,var_2 description`) no longer produces spurious warnings about undocumented active bindings or unknown fields (#1600).
+* `@returns` now works as a method-level tag in R6 classes, just like `@return` (#1148).
 * `initialize()` method parameters now automatically inherit documentation from `@field` tags with the same name, reducing the need to duplicate descriptions. Explicit `@param` tags still take precedence (#1004).
-* R6 subclass methods now automatically inherit parameter documentation from the same-named superclass method when parameters are not documented locally. Fields and active bindings also inherit documentation from superclasses (#996).
+* R6 method usage now shows `ClassName$new(args)` for constructors and `obj$method(args)` for other methods, making it clearer how each method is actually called (#1026).
 
 ## S7
 
