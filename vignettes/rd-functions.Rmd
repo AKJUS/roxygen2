@@ -80,10 +80,10 @@ For example, dplyr uses titles like:
 ### Description
 
 The description should briefly summarize the goal of the function, usually in one paragraph.
-This can be challenging for simple functions, because it can feel like you’re just repeating the title of the function.
+This can be challenging for simple functions, because it can feel like you're just repeating the title of the function.
 Try to find a slightly different wording, if you can.
-It’s okay if this feels a little repetitive; it’s often useful for users to see the same thing expressed in two different ways.
-It’s a little extra work, but the extra effort is often worth it.
+It's okay if this feels a little repetitive; it's often useful for users to see the same thing expressed in two different ways.
+It's a little extra work, but the extra effort is often worth it.
 
 ```{r}
 #| eval: false
@@ -108,7 +108,7 @@ If you need a multi-paragraph description, use an explicit `@description` tag:
 #' apart from `" "` and `"\n"`) are surrounded by `{}` and escaped.
 ```
 
-Basically, if you’re going to include an empty line in your description, you’ll need to use an explicit `@description` tag.
+Basically, if you're going to include an empty line in your description, you'll need to use an explicit `@description` tag.
 
 ### Details
 

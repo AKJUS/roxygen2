@@ -122,7 +122,7 @@ If two or more functions share have similarities but are different or complex en
 - `@inheritParams foo` will copy `@param` contents from `foo`.
 - `@inherit foo` will copy all supported components from `foo`.
 - `@inheritSection foo {Section title}` will copy the `@section {Section title}` section from `foo`.
-- `@inheritDotParams foo` will generate documentation for `…` by copying the documentation for `foo()`'s arguments.
+- `@inheritDotParams foo` will generate documentation for `...` by copying the documentation for `foo()`'s arguments.
 
 We think of this as "inheritance" rather than just copying, because anything you inherit can be overridden by a more specific definition in the documentation.
 This applies particularly to `@inheritParams` which allows you to copy the documentation for some parameters while documenting others directly.
@@ -179,13 +179,13 @@ Since no other function in dplyr has an argument with this name, its documentati
 
 ### Recursive inheritance
 
-`@inheritParams` (like all `@inherits` functions) works recursively, so if `g` inherits parameters from `h`, then `f` can also inherit those parameters from `g`. 
-However, this technique is best used sparingly: it's very easy to create complex dependency webs that are hard to reason about where making changing the documentation in one function cascades out in unexpected ways across your package. 
+`@inheritParams` (like all `@inherits` functions) works recursively, so if `g` inherits parameters from `h`, then `f` can also inherit those parameters from `g`.
+However, this technique is best used sparingly: it's very easy to create complex dependency webs that are hard to reason about where making changing the documentation in one function cascades out in unexpected ways across your package.
 You can avoid this problem by being more explicit about which parameters are inherited:
 
--   `@inheritParams foo x y` inherits only `x` and `y`.
--   `@inheritParams foo -z` inherits all parameters except `z`.
--   `@inheritParams foo first:third` inherits parameters `first` through `third` (in argument order).
+- `@inheritParams foo x y` inherits only `x` and `y`.
+- `@inheritParams foo -z` inherits all parameters except `z`.
+- `@inheritParams foo first:third` inherits parameters `first` through `third` (in argument order).
 
 ### Multiple parameters
 
