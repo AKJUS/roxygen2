@@ -208,7 +208,7 @@
       tag_words_line(tag)
     Condition
       Warning:
-      `tag_words_line()` was deprecated in roxygen2 7.4.0.
+      `tag_words_line()` was deprecated in roxygen2 8.0.0.
       i Please use `tag_words()` instead.
     Output
       [test.R:  1] @test 'a b' {parsed}

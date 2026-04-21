@@ -208,7 +208,7 @@ tag_words <- function(x, min = 0, max = Inf, multiline = FALSE) {
 #' @export
 #' @rdname tag_parsers
 tag_words_line <- function(x) {
-  lifecycle::deprecate_warn("7.4.0", "tag_words_line()", "tag_words()")
+  lifecycle::deprecate_warn("8.0.0", "tag_words_line()", "tag_words()")
   tag_words(x)
 }
 
