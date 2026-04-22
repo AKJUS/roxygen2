@@ -28,7 +28,7 @@ Imports:
     knitr,
     lifecycle,
     methods,
-    pkgload (>= 1.0.2),
+    pkgload (>= 1.5.2),
     R6 (>= 2.1.2),
     rlang (>= 1.1.0),
     utils,
