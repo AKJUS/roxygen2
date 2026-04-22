@@ -11,6 +11,7 @@ vignette: >
 
 ```{r}
 #| include: false
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -39,6 +40,7 @@ Here's a simple example:
 
 ```{r}
 #| eval: false
+
 #' An S4 class to represent a bank account
 #'
 #' @slot balance A length-one numeric vector

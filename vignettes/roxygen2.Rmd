@@ -12,6 +12,7 @@ vignette: >
 
 ```{r}
 #| include: false
+
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
@@ -75,6 +76,7 @@ Roxygen comments start with `#'` so you can continue to use regular comments for
 
 ```{r}
 #| echo: false
+
 example <- "#' Add together two numbers
 #'
 #' @param x A number.
@@ -98,6 +100,7 @@ For the example above, this will generate `man/add.Rd` that looks like:
 ```{r}
 #| echo: false
 #| results: "asis"
+
 cat(
   "\x60\x60\x60rd\n",
   format(roxygen2::roc_proc_text(roxygen2::rd_roclet(), example)[[1]]),
@@ -123,6 +126,7 @@ The example above, that includes an `@export` tag to indicate the `add()` functi
 ```{r}
 #| echo: false
 #| results: "asis"
+
 cat(
   "\x60\x60\x60txt\n",
   roxygen2::roc_proc_text(roxygen2::namespace_roclet(), example),

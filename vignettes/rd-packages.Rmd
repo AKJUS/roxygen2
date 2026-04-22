@@ -12,6 +12,7 @@ vignette: >
 
 ```{r}
 #| include: false
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -27,6 +28,7 @@ Here's an example:
 
 ```{r}
 #| eval: false
+
 #' @keywords internal
 "_PACKAGE"
 ```

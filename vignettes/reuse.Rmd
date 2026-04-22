@@ -12,6 +12,7 @@ vignette: >
 
 ```{r}
 #| include: false
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -73,6 +74,7 @@ This tends to work better if you have a "primary" function with some variants or
 
 ```{r}
 #| eval: false
+
 #' Logarithms
 #'
 #' @param x A numeric vector
@@ -278,6 +280,7 @@ Here's a simple example:
 
 ```{r}
 #| include: false
+
 roxygen2:::markdown_on()
 
 simple_inline <- "#' Title `r 1 + 1`
@@ -309,6 +312,7 @@ You could then write:
 
 ```{r}
 #| echo: false
+
 env <- new.env()
 env$alphabet <- alphabet
 roxygen2:::roxy_meta_set("evalenv", env)
@@ -341,6 +345,7 @@ Here's a simple example, which will greet the user appropriately, depending on t
 
 ```{r}
 #| eval: false
+
 greeting <- function() {
   hour <- as.POSIXlt(Sys.time(), tz = "UTC")$hour
   if (hour < 12) {

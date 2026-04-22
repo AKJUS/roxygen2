@@ -11,6 +11,7 @@ vignette: >
 
 ```{r}
 #| include: false
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -34,6 +35,7 @@ For simple generics, you can do this in the description:
 
 ```{r}
 #| eval: false
+
 #' Frobnpolicate an object
 #'
 #' @description
@@ -47,6 +49,7 @@ For more complicated generics, you can use a `# Methods` section to provide more
 
 ```{r}
 #| eval: false
+
 #' Frobnpolicate an object
 #'
 #' @description
@@ -69,6 +72,7 @@ If you want the list to dynamically reflect all methods that are currently regis
 
 ```{r}
 #| eval: false
+
 #' `Rd doclisting::methods_list("frobnpolicate")`
 ```
 
@@ -76,6 +80,7 @@ Using `` `Rd ` `` requires doclisting in `Imports`, and you'll need a dummy call
 
 ```{r}
 #| eval: false
+
 ignore_unused_imports <- function() {
   doclisting::methods_list
 }
@@ -101,6 +106,7 @@ roxygen2 will warn you if you have forgotten.
 
 ```{r}
 #| eval: false
+
 #' @export
 bizarro.character <- function(x, ...) {
   letters <- strsplit(x, "")
@@ -129,6 +135,7 @@ There are three cases you need to be aware of:
 
   ```{r}
   #| eval: false
+  
   #' @importFrom pkg generic
   #' @export
   generic.foo <- function(x, ...) {}
@@ -138,6 +145,7 @@ There are three cases you need to be aware of:
 
   ```{r}
   #| eval: false
+  
   #' @exportS3Method pkg::generic
   generic.foo <- function(x, ...) {}
   ```
@@ -154,6 +162,7 @@ If this happens to you, disambiguate with `@method`:
 
 ```{r}
 #| eval: false
+
 #' @method all.equal data.frame
 #' @export
 all.equal.data.frame <- function(target, current, ...) {

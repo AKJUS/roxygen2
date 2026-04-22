@@ -11,6 +11,7 @@ vignette: >
 
 ```{r}
 #| include: false
+
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
@@ -242,6 +243,7 @@ For example:
 
 ````{r}
 #| echo: false
+
 simple_fenced <- "#' @title Title
 #' @details Details
 #' ```{r lorem}
@@ -260,6 +262,7 @@ becomes:
 ```{r}
 #| echo: false
 #| results: "asis"
+
 cat(
   "\x60\x60\x60rd\n",
   format(roxygen2:::roc_proc_text(roxygen2::rd_roclet(), simple_fenced)[[1]]),

@@ -11,6 +11,7 @@ vignette: >
 
 ```{r}
 #| include: false
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -34,6 +35,7 @@ For simple generics, you can do this in the description:
 
 ```{r}
 #| eval: false
+
 #' Size of an object
 #'
 #' @description
@@ -53,6 +55,7 @@ For more complicated generics, you can use a `# Methods` section to provide more
 
 ```{r}
 #| eval: false
+
 #' Size of an object
 #'
 #' @description
@@ -77,6 +80,7 @@ It's good practice to document the default method alongside the generic using `@
 
 ```{r}
 #| eval: false
+
 #' @rdname size
 method(size, class_any) <- function(x, ...) {
   length(x)
@@ -94,6 +98,7 @@ If the class has additional properties that are not part of the constructor (e.g
 
 ```{r}
 #| eval: false
+
 #' A range
 #'
 #' Create a range represented by a numeric `start` and `end`. The start must
@@ -133,6 +138,7 @@ When documenting a method, always include a link back to the generic using `[gen
 
 ```{r}
 #| eval: false
+
 #' Size of a range
 #'
 #' The size of a range is its [size()], i.e. its length.

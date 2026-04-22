@@ -13,6 +13,7 @@ vignette: >
 
 ```{r}
 #| include: false
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -42,6 +43,7 @@ If you want to override the default title, you can provide an `rd_family_title` 
 
 ```{r}
 #| eval: false
+
 list(
   rd_family_title = list(aggregations = "Aggregation functions")
 )

@@ -12,6 +12,7 @@ vignette: >
 
 ```{r}
 #| include: false
+
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
@@ -26,6 +27,7 @@ We usually put `@export` in between `@returns` and `@examples`:
 
 ```{r}
 #| eval: false
+
 #' Add two numbers together
 #'
 #' @param x,y A pair of numbers.
@@ -87,6 +89,7 @@ It's a little extra work, but the extra effort is often worth it.
 
 ```{r}
 #| eval: false
+
 #' Detect the presence/absence of a match
 #'
 #' `str_detect()` returns a logical vector with `TRUE` for each element of
@@ -98,6 +101,7 @@ If you need a multi-paragraph description, use an explicit `@description` tag:
 
 ```{r}
 #| eval: false
+
 #' View strings and matches
 #'
 #' @description
@@ -143,6 +147,7 @@ All parameters must be documented.
 
 ```{r}
 #| eval: false
+
 #' @param pattern Pattern to look for.
 #'
 #'   The default interpretation is a regular expression, as described in
@@ -157,6 +162,7 @@ It's a good idea to describe the default value in the `@param` description, part
 
 ```{r}
 #| eval: false
+
 #' @param na.rm Remove missing values? If `FALSE` (the default), the result
 #'   will be `NA` if any element of `string` is `NA`.
 ```
@@ -165,6 +171,7 @@ For arguments with a small fixed set of possible values, list them in the descri
 
 ```{r}
 #| eval: false
+
 #' @param side Side on which to remove whitespace: `"left"`, `"right"`, or
 #'   `"both"` (the default).
 ```
@@ -173,6 +180,7 @@ If each value needs more explanation, use a bulleted list:
 
 ```{r}
 #| eval: false
+
 #' @param whitespace_only A boolean.
 #'   * `TRUE` (the default): wrapping will only occur at whitespace.
 #'   * `FALSE`: can break on any non-word character (e.g. `/`, `-`).
@@ -192,6 +200,7 @@ For simple cases, a single sentence suffices:
 
 ```{r}
 #| eval: false
+
 #' @returns A logical vector the same length as `string`.
 ```
 
@@ -199,6 +208,7 @@ For functions returning data frames, describe how the output relates to the inpu
 
 ```{r}
 #| eval: false
+
 #' @returns
 #' An object of the same type as `.data`. The output has the following
 #' properties:
@@ -220,6 +230,7 @@ Use comments to break examples into sections:
 
 ```{r}
 #| eval: false
+
 #' @examples
 #' fruit <- c("apple", "banana", "pear", "pineapple")
 #' str_detect(fruit, "a")
@@ -237,6 +248,7 @@ For the purpose of illustration, it's often useful to include code that causes a
 
 ```{r}
 #| eval: false
+
 #' @examples
 #' # Row sizes must be compatible when column-binding
 #' try(bind_cols(tibble(x = 1:3), tibble(y = 1:2)))
