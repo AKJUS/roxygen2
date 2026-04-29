@@ -1,9 +1,17 @@
 ## R CMD check results
 
-There was one note:  Found non-API calls to R: 'SETLENGTH', 'SET_GROWABLE_BIT', 'SET_TRUELENGTH'.
 
-These come from the upstream cpp11, and we're working to fix them there.
 
 ## revdepcheck results
 
-I did not check revdeps since the small bug fixes I made did not cause failures on previous submission.
+We checked 475 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 2 new problems
+ * We failed to check 2 packages (due to stan)
+
+I supplied patches for both packages:
+
+* https://github.com/akmn35/new.dist/pull/2
+* https://github.com/ihababusaif/tnl.Test/pull/1
+
+Issues with CRAN packages are summarised below.
