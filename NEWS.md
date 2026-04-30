@@ -1,4 +1,4 @@
-# roxygen2 (development version)
+# roxygen2 8.0.0
 
 * roxygen2 now requires R 4.1 (#1632) and no longer depends on purrr, stringr, or stringi. As a result, no package in the devtools constellation depends on stringr, which means you no longer need stringi, making it a bit easier to install in constrained Linux environments.
 * All generated links now share the same style and code path. This will produce some minor differences when you re-document, but links will be more consistent overall (#1792).
